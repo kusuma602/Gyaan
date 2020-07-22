@@ -1,0 +1,3 @@
+Login Interactor
+    - validate username and password
+    - login with valid username and password

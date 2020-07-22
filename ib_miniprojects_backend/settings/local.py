@@ -3,7 +3,6 @@ import os
 from ib_miniprojects_backend.settings.base import *
 from ib_miniprojects_backend.settings.base_swagger_utils import *
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '^d*66-07r)+k7-rvvhc1c2!j*cyud&a)v69_8+d7*xg&q!5gk#'
 
@@ -47,12 +46,12 @@ LOGGING['loggers'].update(
     {
 
         '': {
-            'handlers': ['console',],
+            'handlers': ['console', ],
             'level': 'INFO',
             'propagate': False,
         },
         'dsu.error': {
-            'handlers': ['console',],
+            'handlers': ['console', ],
             'level': 'ERROR',
             'propagate': False,
         },
@@ -96,6 +95,8 @@ LOGGING['handlers'] = {
         'class': 'logging.StreamHandler',
         'formatter': 'console',
         'filters': ["request_id", "user_id", "path_info",
-                        "aws_request_id", "stage"]
+                    "aws_request_id", "stage"]
     }
 }
+
+AUTH_USER_MODEL = 'gyaan_auth.User'
