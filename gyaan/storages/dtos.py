@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Domain_DTO:
+class DomainDTO:
     domain_id: int
     domain_name: str
     description: str
