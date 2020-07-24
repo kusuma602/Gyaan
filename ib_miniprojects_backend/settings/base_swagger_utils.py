@@ -62,8 +62,9 @@ SWAGGER_UTILS = {
         }
     },
     "APPS": {
-        "gyaan_auth": {},
-        "gyaan": {}
+        "gyaan_auth": {"dsu_version": "1.0"},
+        "gyaan": {"dsu_version": "1.0"},
+
     },
     "HOST": os.environ.get('APIGATEWAY_ENDPOINT', '127.0.0.1:8000'),
 }

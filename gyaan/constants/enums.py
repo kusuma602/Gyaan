@@ -3,6 +3,10 @@ import enum
 from ib_common.constants import BaseEnumClass
 
 
+class ReactionChoices(BaseEnumClass, enum.Enum):
+    LIKE = "LIKE"
+
+
 class CodeLanguage(BaseEnumClass, enum.Enum):
     python = "PYTHON"
     c_language = "C"

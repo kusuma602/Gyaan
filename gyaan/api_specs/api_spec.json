@@ -216,7 +216,7 @@
           "name":"offset",
           "in" :"query",
           "description": "Offset Value",
-          "required": True,
+          "required": true,
           "type": "integer"
 
         },
@@ -224,7 +224,7 @@
           "name":"limit",
           "in" :"query",
           "description": "Limit Value",
-          "required": True,
+          "required": true,
           "type": "integer"
 
         }
@@ -292,6 +292,12 @@
                   "domain_experts"
                 ]
 
+                  },
+                  "posts":{
+                    "type": "array",
+                    "items":{
+                      "$ref":"#/definitions/Post"
+                    }
                   }
 
                 },
@@ -337,7 +343,7 @@
       }
     },
     "paths": {
-      "/domain/{domain_id}/v1/":{
+      "/domain/{domain_id}/details/posts/v1/":{
         "get":{
           "operationId": "get_domain_details",
           "summary": " Get domain details",
