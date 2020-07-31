@@ -42,7 +42,7 @@ class StorageInterface(ABC):
         pass
 
     @abstractmethod
-    def get_post_reactions_count(self, post_ids: List[int]) -> List[PostReactionsCountDTO]:
+    def get_post_reactions_counts(self, post_ids: List[int]) -> List[PostReactionsCountDTO]:
         pass
 
     @abstractmethod

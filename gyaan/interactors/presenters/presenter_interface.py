@@ -1,23 +1,22 @@
 from abc import ABC
 from abc import abstractmethod
-from dataclasses import dataclass
-from typing import List
+
 
 from django.http import HttpResponse
-
-from gyaan.adapters.dtos import UserDTO
-from gyaan.storages.dtos import PostDTO, CommentDTO, CommentRepliesCountDTO, CommentReactionsCountDTO, \
-    PostReactionsCountDTO, PostCommentsCountDTO
 
 
 class GetDomainDetailsPresenterInterface(ABC):
 
     @abstractmethod
-    def raise_invalid_domain_id_exception(self):
+    def get_invalid_domain_id_response(self)-> HttpResponse:
+        pass
+
+    @abstractmethod
+    def get_domain_details_response(self, domain_details_dto) -> HttpResponse:
         pass
 
 
-class GetPostsPeresenterInterface(ABC):
+class GetPostsPresenterInterface(ABC):
 
     @abstractmethod
     def return_invalid_posts_response(self, err_obj) -> HttpResponse:

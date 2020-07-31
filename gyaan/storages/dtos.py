@@ -27,7 +27,7 @@ class ReactionDTO:
     reaction: ReactionChoices
     reacted_by_id: int
     post_id: Optional[int]
-    comment: Optional[int]
+    comment_id: Optional[int]
     reacted_at: datetime
 
 
@@ -38,7 +38,6 @@ class CommentDTO:
     commented_at: datetime
     comment_content: str
     post_id: int
-    comment_id: Optional[int]
 
 
 @dataclass

@@ -21,7 +21,7 @@ class PostFactory(factory.django.DjangoModelFactory):
         model = Post
 
     title = factory.Sequence(lambda n: "post_title_{0}".format(n+1))
-    description = factory.Sequence(lambda n: "post_{0}_description".format(n + 1))
+    description = factory.Sequence(lambda n: "post_{0} description".format(n + 1))
     posted_at = factory.LazyFunction(datetime.now)
     domain = factory.SubFactory(DomainFactory)
     posted_by_id = factory.Sequence(lambda n: n+1)
@@ -77,7 +77,7 @@ class PostReactionFactory(factory.django.DjangoModelFactory):
     reaction = factory.Iterator(REACTION_CHOICES)
     reacted_by_id = factory.Sequence(lambda n: n+1)
     post = factory.SubFactory(PostFactory)
-    comment = factory.SubFactory(CommentFactory)
+    reacted_at = factory.LazyFunction(datetime.now)
 
 
 class CommentReactionFactory(factory.django.DjangoModelFactory):
@@ -87,3 +87,4 @@ class CommentReactionFactory(factory.django.DjangoModelFactory):
     reaction = factory.Iterator(REACTION_CHOICES)
     reacted_by_id = factory.Sequence(lambda n: n+1)
     comment = factory.SubFactory(CommentFactory)
+    reacted_at = factory.LazyFunction(datetime.now)

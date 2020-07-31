@@ -7,7 +7,7 @@ from gyaan.interactors.dtos import PostDetailsDTO, CommentDeatilsDTO
 from gyaan.interactors.mixins.get_user_dtos import GetUserDtosMixin
 from gyaan.interactors.presenters.dtos import CompletePostDetailsDTO
 from gyaan.interactors.presenters.presenter_interface import \
-    GetPostsPeresenterInterface
+    GetPostsPresenterInterface
 from gyaan.interactors.storages.storage_interface import StorageInterface
 
 
@@ -17,19 +17,22 @@ class GetPostsInteractor(GetUserDtosMixin):
         self.storage = storage
 
     def get_posts_wrapper(self,
-                          presenter: GetPostsPeresenterInterface,
+                          presenter: GetPostsPresenterInterface,
                           post_ids: List[int]) -> HttpResponse:
 
         from gyaan.exceptions.custom_exceptions import InvalidPostIds
         try:
-            response = self.get_posts_response(presenter=presenter, post_ids=post_ids)
+            response = self.get_posts_response(
+                presenter=presenter,
+                post_ids=post_ids
+            )
         except InvalidPostIds as err:
             response = presenter.return_invalid_posts_response(err)
 
         return response
 
     def get_posts_response(self,
-                           presenter: GetPostsPeresenterInterface,
+                           presenter: GetPostsPresenterInterface,
                            post_ids: List[int]) -> HttpResponse:
         post_dtos = self.get_posts(post_ids=post_ids)
         response = presenter.get_posts_response(post_dto=post_dtos)
@@ -75,7 +78,7 @@ class GetPostsInteractor(GetUserDtosMixin):
 
     def _get_post_details(self, unique_post_ids) -> PostDetailsDTO:
         post_dtos = self.storage.get_post_dtos(post_ids=unique_post_ids)
-        post_reactions_count = self.storage.get_post_reactions_count(
+        post_reactions_count = self.storage.get_post_reactions_counts(
             post_ids=unique_post_ids
         )
         post_comments_count = self.storage.get_post_comments_count(
@@ -92,7 +95,8 @@ class GetPostsInteractor(GetUserDtosMixin):
         user_ids += [
             comment_dto.commented_by_id for comment_dto in post_comments_dtos
         ]
-        user_dtos = self.get_user_dtos(user_ids=user_ids)
+        unique_user_ids = list(set(user_ids))
+        user_dtos = self.get_user_dtos(user_ids=unique_user_ids)
         return user_dtos
 
     def _validate_post_ids(self, post_ids):
@@ -114,4 +118,5 @@ class GetPostsInteractor(GetUserDtosMixin):
             comment_ids += self.storage.get_latest_comment_ids(
                 post_id=post_id, no_of_comments=2
             )
+        comment_ids = list(set(comment_ids))
         return comment_ids

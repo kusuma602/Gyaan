@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+
 from gyaan.exceptions.custom_exceptions import InvalidDomainID
 from gyaan.interactors.dtos import CompleteDomainDetailsDTO
 from gyaan.interactors.mixins.get_user_dtos import GetUserDtosMixin
@@ -11,27 +13,30 @@ class GetDomainDetailsInteractor(GetUserDtosMixin):
     def __init__(self, storage: StorageInterface):
         self.storage = storage
 
-    # def get_domain_details_wrapper(
-    #         self,
-    #         domain_id: int,
-    #         presenter: GetDomainDetailsPresenterInterface):
-    #     try:
-    #         response = self.get_domain_details_response(
-    #             domain_id=domain_id,
-    #             presenter=presenter
-    #         )
-    #     except InvalidDomainID:
-    #         response = presenter.raise_invalid_domain_id_exception()
-    #
-    #     return response
-    #
-    # def get_domain_details_response(
-    #         self,
-    #         domain_id: int,
-    #         presenter: GetDomainDetailsPresenterInterface):
-    #
-    #     domain_details_dto = self.get_domain_details(domain_id=domain_id)
-    #     response = presenter.get_domain_details_response
+    def get_domain_details_wrapper(
+            self,
+            domain_id: int,
+            presenter: GetDomainDetailsPresenterInterface):
+        try:
+            response = self.get_domain_details_response(
+                domain_id=domain_id,
+                presenter=presenter
+            )
+        except InvalidDomainID:
+            response = presenter.get_invalid_domain_id_response()
+
+        return response
+
+    def get_domain_details_response(
+            self,
+            domain_id: int,
+            presenter: GetDomainDetailsPresenterInterface) -> HttpResponse:
+
+        domain_details_dto = self.get_domain_details(domain_id=domain_id)
+        response = presenter.get_domain_details_response(
+            domain_details_dto=domain_details_dto
+        )
+        return response
 
     def get_domain_details(self, domain_id: int) -> CompleteDomainDetailsDTO:
         self.storage.validate_domain_id(domain_id=domain_id)
