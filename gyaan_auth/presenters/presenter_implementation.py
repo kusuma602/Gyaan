@@ -47,15 +47,15 @@ class GetUserDtoPresenterImplementation(GetUserDtoPresenterInterface):
 
         def raise_invalid_user_ids_exception(self, err_object):
             import json
-            from gyaan_auth.constants.exception_messages import INVALID_PASSWORD
+            from gyaan_auth.constants.exception_messages import INVALID_USER_ID
             invalid_user_ids = err_object.invalid_user_ids
 
             invalid_ids_response = \
-                f"{INVALID_PASSWORD[0]} Invalid user ids: {invalid_user_ids}"
+                f"{INVALID_USER_ID[0]} Invalid user ids: {invalid_user_ids}"
             data = json.dumps({
                 "response": invalid_ids_response,
                 "http_status_code": 400,
-                "res_status": INVALID_PASSWORD[1]
+                "res_status": INVALID_USER_ID[1]
             })
             response_object = response.HttpResponse(data, status=400)
             return response_object

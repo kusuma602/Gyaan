@@ -10,4 +10,3 @@ class Post(models.Model):
     posted_at = models.DateTimeField(auto_now=True)
     posted_by_id = models.IntegerField()
     domain = models.ForeignKey(Domain, on_delete=models.CASCADE)
-

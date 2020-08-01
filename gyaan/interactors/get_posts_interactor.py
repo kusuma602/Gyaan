@@ -47,6 +47,7 @@ class GetPostsInteractor(GetUserDtosMixin):
             post_comments_dtos=comment_details_dto.post_comments_dtos,
             post_dtos=post_details_dto.post_dtos
         )
+        tag_dtos = self._get_post_tag_dtos(post_ids)
         return CompletePostDetailsDTO(
             post_dtos=post_details_dto.post_dtos,
             comment_dtos=comment_details_dto.post_comments_dtos,
@@ -120,3 +121,10 @@ class GetPostsInteractor(GetUserDtosMixin):
             )
         comment_ids = list(set(comment_ids))
         return comment_ids
+
+    def _get_post_tag_dtos(self, post_ids):
+        tag_dtos = []
+        for post_id in post_ids:
+            self.storage.get_post_tag_dto(post_id)
+
+

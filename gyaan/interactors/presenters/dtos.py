@@ -5,7 +5,7 @@ from typing import List
 from gyaan.adapters.dtos import UserDTO
 from gyaan.storages.dtos import PostDTO, CommentDTO, \
     PostCommentsCountDTO, PostReactionsCountDTO, \
-    CommentReactionsCountDTO, CommentRepliesCountDTO
+    CommentReactionsCountDTO, CommentRepliesCountDTO, PostTagDTO
 
 
 @dataclass
@@ -17,3 +17,4 @@ class CompletePostDetailsDTO:
     comment_reactions_count_dto: List[CommentReactionsCountDTO]
     comment_replies_counts: List[CommentRepliesCountDTO]
     user_dtos: List[UserDTO]
+    tag_dtos : List[PostTagDTO]

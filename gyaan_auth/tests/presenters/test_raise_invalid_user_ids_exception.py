@@ -12,9 +12,9 @@ def test_raise_invalid_user_id_exception_returns_http_response():
     err_obj = InvalidUserIds(invalid_user_ids)
     expected_response = {
         'http_status_code': 400,
-        'res_status': 'INVALID_PASSWORD',
+        'res_status': 'INVALID_USER_ID',
         'response':
-            'Invalid Password, try with Valid Password Invalid user ids: [1, 2, 3]'
+            'Invalid User Id, try with valid User Id Invalid user ids: [1, 2, 3]'
     }
 
     # Act

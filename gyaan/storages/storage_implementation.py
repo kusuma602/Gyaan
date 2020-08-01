@@ -141,7 +141,8 @@ class StorageImplementation(StorageInterface):
             posted_by_id=post_object.posted_by_id,
             title=post_object.title,
             description=post_object.description,
-            domain_id=post_object.domain_id
+            domain_id=post_object.domain_id,
+            domain_name=post_id.domain.name
         )
 
     @staticmethod

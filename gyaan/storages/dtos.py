@@ -18,6 +18,7 @@ class PostDTO:
     posted_at: datetime
     posted_by_id: int
     domain_id: int
+    domain_name: Optional[str]
 
 
 @dataclass
@@ -68,6 +69,7 @@ class TagDTO:
 class PostTagDTO:
     post_id: int
     tag_id: int
+    tag_name: str
 
 
 @dataclass
