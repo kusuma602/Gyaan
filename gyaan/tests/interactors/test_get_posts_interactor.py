@@ -95,7 +95,6 @@ class TestGetPostsInteractor:
         storage_mock.get_post_comments_count.assert_called_once_with(
             latest_comment_ids
         )
-        #storage_mock.get_latest_comment_ids.calls_count()
         storage_mock.get_comment_dtos.assert_called_once_with(
             latest_comment_ids
         )

@@ -5,7 +5,7 @@ from django.db.models import Count
 from gyaan.interactors.storages.storage_interface import \
     StorageInterface
 from gyaan.storages.dtos import DomainDTO, PostDTO, PostReactionsCountDTO, CommentDTO, CommentRepliesCountDTO, \
-    CommentReactionsCountDTO, PostCommentsCountDTO
+    CommentReactionsCountDTO, PostCommentsCountDTO, PostTagDTO
 
 
 class StorageImplementation(StorageInterface):
@@ -192,3 +192,6 @@ class StorageImplementation(StorageInterface):
             post_id=post_id,
             comments_count=comments_count_dict['count']
         )
+
+    def get_post_tag_dto(self, post_id: int) -> PostTagDTO:
+        pass

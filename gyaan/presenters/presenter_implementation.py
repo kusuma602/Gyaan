@@ -79,6 +79,7 @@ class GetPostsPresenterImplementation(GetPostsPresenterInterface):
         comments_count = self._get_post_comments_count(
             post_comments_count_dto, post_id
         )
+        answer = self._get_answer(post_id, comment_dtos)
 
     @staticmethod
     def _get_post_comments_count(post_comments_count_dto, post_id) -> int:
@@ -97,13 +98,21 @@ class GetPostsPresenterImplementation(GetPostsPresenterInterface):
         return reactions_count
 
     @staticmethod
-    def _get_post_Comments(self, post_id, comment_dtos):
+    def _get_post_Comments(post_id, comment_dtos):
         comments_list = []
         for comment_dto in comment_dtos:
-            is_post_direct_comment = comment_dto.post_id == post_id and comment_dto.parent_comment_id is None
+            is_post_direct_comment = comment_dto.post_id == post_id \
+                                     and comment_dto.parent_comment_id is None
             if is_post_direct_comment:
                 comments_list.append(is_post_direct_comment)
         return comments_list
 
-
-
+    @staticmethod
+    def _get_answer(post_id, comment_dtos) -> Dict:
+        for comment_dto in comment_dtos:
+            is_answer = comment_dto.post_id == post_id \
+                and comment_dto.parent_comment_id is None\
+                and comment_dto.is_answer
+            if is_answer:
+                answer = comment_dto.__dict__
+        return answer

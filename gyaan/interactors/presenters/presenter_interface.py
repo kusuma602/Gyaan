@@ -25,3 +25,12 @@ class GetPostsPresenterInterface(ABC):
     @abstractmethod
     def get_posts_response(self, post_dto) -> HttpResponse:
         pass
+
+
+class GetDomainPostsPresenterInterface(ABC):
+
+    @abstractmethod
+
+
+    @abstractmethod
+    def

@@ -9,3 +9,4 @@ class Comment(models.Model):
     comment_content = models.TextField()
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    approved_by_id = models.IntegerField(null=True)

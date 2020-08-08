@@ -27,6 +27,7 @@ def create_reactions_for_posts():
     post_reactions = PostReactionFactory.create_batch(2)
     return post_reactions
 
+
 @pytest.fixture
 @pytest.mark.django_db
 def create_domain_members():
@@ -81,7 +82,7 @@ def create_comments():
 @freeze_time("2020-07-31 00:00:00.000000")
 def create_comment_dtos():
     from gyaan.tests.factories.storage_dtos import CommentDTOFactory
-    comment_dto_factories = CommentDTOFactory.create_batch(4)
+    comment_dto_factories = CommentDTOFactory.create_batch(2)
     return comment_dto_factories
 
 

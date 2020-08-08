@@ -16,3 +16,8 @@ class CodeLanguage(BaseEnumClass, enum.Enum):
     python38 = "PYTHON38"
     python38_datascience = "PYTHON38_DATASCIENCE"
     python38_aiml = "PYTHON38_AIML"
+
+
+class RequestStatus(BaseEnumClass, enum.Enum):
+    Approved = "APPROVED"
+    Rejected = "REJECTED"

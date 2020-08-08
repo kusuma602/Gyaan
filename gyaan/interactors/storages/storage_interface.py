@@ -4,7 +4,7 @@ from typing import List
 
 from gyaan.storages.dtos import DomainDTO, PostDTO, CommentDTO, \
     PostCommentsCountDTO, CommentReactionsCountDTO, \
-    CommentRepliesCountDTO, PostReactionsCountDTO
+    CommentRepliesCountDTO, PostReactionsCountDTO, PostTagDTO
 
 
 class StorageInterface(ABC):
@@ -64,4 +64,8 @@ class StorageInterface(ABC):
 
     @abstractmethod
     def get_post_comments_count(self, post_ids: List[int]) -> List[PostCommentsCountDTO]:
+        pass
+
+    @abstractmethod
+    def get_post_tag_dto(self, post_id: int) -> PostTagDTO:
         pass

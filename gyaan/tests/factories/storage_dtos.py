@@ -27,6 +27,7 @@ class PostDTOFactory(factory.Factory):
     posted_at = factory.LazyFunction(datetime.now)
     posted_by_id = factory.sequence(lambda n: n + 1)
     domain_id = factory.sequence(lambda n: n + 1)
+    domain_name = factory.sequence(lambda n: "domain name_{0}".format(n+1))
 
 
 class PostCommentsCountDTOFactory(factory.Factory):

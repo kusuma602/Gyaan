@@ -44,4 +44,3 @@ def comment_reactions_count_dto():
 def comment_dtos():
     comment_dtos = CommentDTOFactory.create_batch(4)
     return comment_dtos
-
